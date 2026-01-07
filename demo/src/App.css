@@ -2,62 +2,70 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--asm-color-bg);
 }
 
 .app-header {
-  background: var(--color-surface);
-  padding: var(--space-6) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--asm-color-surface);
+  padding: var(--asm-space-6) var(--asm-space-4);
+  border-bottom: var(--asm-border-hairline) solid var(--asm-color-border);
   text-align: center;
+  box-shadow: var(--asm-effect-shadow-sm);
 }
 
 .app-header h1 {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-2);
+  font-size: var(--asm-font-size-2xl);
+  font-weight: var(--asm-font-weight-700);
+  color: var(--asm-color-text);
+  margin-bottom: var(--asm-space-2);
 }
 
 .app-header p {
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  font-size: var(--asm-font-size-md);
+  color: var(--asm-color-text-muted);
 }
 
 .tab-nav {
   display: flex;
-  gap: var(--space-1);
-  padding: var(--space-4);
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  gap: var(--asm-space-2);
+  padding: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border-bottom: var(--asm-border-hairline) solid var(--asm-color-border);
 }
 
 .tab-nav button {
-  padding: var(--space-3) var(--space-6);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-background);
-  color: var(--color-text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  padding: var(--asm-space-3) var(--asm-space-6);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  background: var(--asm-color-bg);
+  color: var(--asm-color-text);
+  font-size: var(--asm-font-size-sm);
+  font-weight: var(--asm-font-weight-500);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background var(--asm-motion-duration-fast)
+      var(--asm-motion-easing-standard),
+    color var(--asm-motion-duration-fast) var(--asm-motion-easing-standard),
+    border-color var(--asm-motion-duration-fast)
+      var(--asm-motion-easing-standard);
 }
 
 .tab-nav button:hover {
-  background: var(--color-surface-hover);
-  border-color: var(--color-primary);
+  background: var(--asm-color-surface-muted);
+  border-color: var(--asm-color-primary-400);
 }
 
 .tab-nav button.active {
-  background: var(--color-primary);
-  color: var(--color-text-inverse);
-  border-color: var(--color-primary);
+  background: var(--asm-color-primary-600);
+  color: var(--asm-color-button-primary-text);
+  border-color: var(--asm-color-primary-600);
+  box-shadow: var(--asm-effect-shadow-sm);
 }
 
 .app-main {
   flex: 1;
-  padding: var(--space-6);
+  padding: var(--asm-space-6);
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  background: var(--asm-color-bg);
 }

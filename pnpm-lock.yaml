@@ -39,9 +39,9 @@ importers:
 
   demo:
     dependencies:
-      '@asafarim/shared-tokens':
-        specifier: '*'
-        version: 0.8.1
+      '@asafarim/design-tokens':
+        specifier: ^0.5.0
+        version: 0.5.0
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -67,6 +67,10 @@ importers:
 
 packages:
 
+  '@asafarim/design-tokens@0.5.0':
+    resolution: {integrity: sha512-q7NguuMVBgaToX1EEOeraAiBebqKhidKKUohsMpKScHJh7mv/5igQcpDI+xdL479pCy9Kx5yUu0dhyNX2Gro+Q==}
+    engines: {node: '>=16'}
+
   '@asafarim/direxpo-core@0.4.0':
     resolution: {integrity: sha512-RMPfhTCwp7X6rHr2L1anE5nJ3zTCCw8CRhUFfONBFzhfvBpGvSAGOmTdIXaiOxJFOWeHuJtp/SvLdRkRjjFwqA==}
     peerDependencies:
@@ -76,9 +80,6 @@ packages:
   '@asafarim/md-exporter@0.2.3':
     resolution: {integrity: sha512-9nb4w2CcA3Xmh2Vhm1hV/athwIv1LJtY0h14cdbMKnyXQB9RLFQOPmHc6j6c4U3SXhLEAGI3V2+KW4LCaeYpaA==}
     hasBin: true
-
-  '@asafarim/shared-tokens@0.8.1':
-    resolution: {integrity: sha512-VZgRqkd1owzrTMrVhkXQ8oUu6EnnV+RALOn81GGWvjH7NCxNdW0f8VPgjDcw/dKeN033FKPS1feA0iPpTkKs6A==}
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -1424,6 +1425,8 @@ packages:
 
 snapshots:
 
+  '@asafarim/design-tokens@0.5.0': {}
+
   '@asafarim/direxpo-core@0.4.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       react: 19.2.3
@@ -1436,8 +1439,6 @@ snapshots:
       fast-glob: 3.3.3
       isbinaryfile: 5.0.7
       prettier: 3.7.4
-
-  '@asafarim/shared-tokens@0.8.1': {}
 
   '@babel/code-frame@7.27.1':
     dependencies:

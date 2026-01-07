@@ -1,57 +1,144 @@
 .tree-generator {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--asm-space-6);
 }
 
 .tree-generator h2 {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  font-size: var(--asm-font-size-xl);
+  font-weight: var(--asm-font-weight-700);
+  color: var(--asm-color-text);
 }
 
 .tree-generator .description {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin-top: calc(-1 * var(--space-4));
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text-muted);
+  margin-top: calc(-1 * var(--asm-space-4));
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-4);
+  padding: var(--asm-space-6);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-lg);
+  box-shadow: var(--asm-effect-shadow-sm);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-2);
+}
+
+.form-group label {
+  font-size: var(--asm-font-size-sm);
+  font-weight: var(--asm-font-weight-600);
+  color: var(--asm-color-text);
+}
+
+.form-group input,
+.form-group select {
+  padding: var(--asm-space-3);
+  border: var(--asm-border-hairline) solid var(--asm-color-input-border);
+  border-radius: var(--asm-radius-md);
+  background: var(--asm-color-input-bg);
+  color: var(--asm-color-input-text);
+  font-size: var(--asm-font-size-md);
+  font-family: var(--asm-font-family-base);
+  transition: border-color var(--asm-motion-duration-fast)
+    var(--asm-motion-easing-standard);
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--asm-color-input-border-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--asm-color-focus-ring) 30%, transparent);
+}
+
+.form-group select option {
+  background: var(--asm-color-surface);
+  color: var(--asm-color-text);
+  padding: var(--asm-space-2);
+}
+
+.btn-primary {
+  padding: var(--asm-space-3) var(--asm-space-6);
+  background: var(--asm-color-button-primary-bg);
+  color: var(--asm-color-button-primary-text);
+  border: none;
+  border-radius: var(--asm-radius-md);
+  font-size: var(--asm-font-size-md);
+  font-weight: var(--asm-font-weight-600);
+  cursor: pointer;
+  transition: var(--asm-transition-scale), var(--asm-transition-fade);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: var(--asm-color-button-primary-bg-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--asm-color-button-disabled-bg);
+  color: var(--asm-color-button-disabled-text);
+}
+
+.error {
+  padding: var(--asm-space-4);
+  background: var(--asm-color-danger-50);
+  color: var(--asm-color-danger-700);
+  border: var(--asm-border-hairline) solid var(--asm-color-danger-400);
+  border-radius: var(--asm-radius-md);
+  font-size: var(--asm-font-size-sm);
 }
 
 .result-info {
-  padding: var(--space-4);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  padding: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--asm-space-2);
 }
 
 .result-info p {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text-muted);
 }
 
 .result-info strong {
-  color: var(--color-text-primary);
-  font-weight: var(--font-weight-semibold);
+  color: var(--asm-color-text);
+  font-weight: var(--asm-font-weight-600);
 }
 
 .tree-preview-wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
+  gap: var(--asm-space-2);
+  margin-top: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  padding: var(--asm-space-4);
+  box-shadow: var(--asm-effect-shadow-sm);
 }
 
 .preview-header {
   display: flex;
   justify-content: space-between;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text-muted);
 }
 
 .preview-status {
@@ -61,37 +148,37 @@
 .tree-preview {
   max-height: 360px;
   overflow-y: auto;
-  padding: var(--space-3);
-  background: var(--color-background);
-  border-radius: var(--radius-sm);
-  border: 1px dashed var(--color-border);
-  font-family: var(--font-family-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-primary);
+  padding: var(--asm-space-3);
+  background: var(--asm-color-bg);
+  border-radius: var(--asm-radius-sm);
+  border: 1px dashed var(--asm-color-border);
+  font-family: var(--asm-font-family-mono);
+  font-size: var(--asm-font-size-xs);
+  color: var(--asm-color-text);
   white-space: pre-wrap;
 }
 
 .tree-preview-placeholder {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  padding: var(--space-3);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-sm);
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text-muted);
+  padding: var(--asm-space-3);
+  border: 1px dashed var(--asm-color-border);
+  border-radius: var(--asm-radius-sm);
 }
 
 .btn-secondary {
-  padding: var(--space-3) var(--space-6);
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  padding: var(--asm-space-3) var(--asm-space-6);
+  background: var(--asm-color-surface);
+  color: var(--asm-color-text);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  font-size: var(--asm-font-size-md);
+  font-weight: var(--asm-font-weight-500);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: var(--asm-transition-fade), var(--asm-transition-scale);
 }
 
 .btn-secondary:hover {
-  background: var(--color-surface-hover);
-  border-color: var(--color-primary);
+  background: var(--asm-color-surface-muted);
+  border-color: var(--asm-color-primary-500);
 }

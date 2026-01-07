@@ -3,6 +3,7 @@ import './FileDiscovery.css'
 
 interface DiscoverOptions {
   targetPath: string
+  filter?: 'all' | 'tsx' | 'css' | 'md' | 'json' | 'glob'
   pattern?: string
   exclude?: string
   maxSize?: number
@@ -11,6 +12,7 @@ interface DiscoverOptions {
 function FileDiscovery() {
   const [options, setOptions] = useState<DiscoverOptions>({
     targetPath: './src',
+    filter: 'all',
     pattern: '',
     exclude: '',
     maxSize: undefined,
@@ -42,6 +44,8 @@ function FileDiscovery() {
     }
   }
 
+  const showPattern = options.filter === 'glob'
+
   return (
     <div className="file-discovery">
       <h2>File Discovery</h2>
@@ -62,15 +66,33 @@ function FileDiscovery() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="pattern">Pattern (optional)</label>
-          <input
-            id="pattern"
-            type="text"
-            value={options.pattern}
-            onChange={(e) => setOptions({ ...options, pattern: e.target.value })}
-            placeholder="*.ts"
-          />
+          <label htmlFor="filter">Filter</label>
+          <select
+            id="filter"
+            value={options.filter || 'all'}
+            onChange={(e) => setOptions({ ...options, filter: e.target.value as any })}
+          >
+            <option value="all">All Files</option>
+            <option value="tsx">TypeScript/JavaScript</option>
+            <option value="css">CSS</option>
+            <option value="md">Markdown</option>
+            <option value="json">JSON</option>
+            <option value="glob">Glob Pattern</option>
+          </select>
         </div>
+
+        {showPattern && (
+          <div className="form-group">
+            <label htmlFor="pattern">Pattern</label>
+            <input
+              id="pattern"
+              type="text"
+              value={options.pattern || ''}
+              onChange={(e) => setOptions({ ...options, pattern: e.target.value })}
+              placeholder="*.ts"
+            />
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="exclude">Exclude (optional)</label>
@@ -84,7 +106,7 @@ function FileDiscovery() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="maxSize">Max Size (bytes, optional)</label>
+          <label htmlFor="maxSize">Max Size (MB, optional)</label>
           <input
             id="maxSize"
             type="number"
@@ -92,7 +114,7 @@ function FileDiscovery() {
             onChange={(e) =>
               setOptions({ ...options, maxSize: e.target.value ? Number(e.target.value) : undefined })
             }
-            placeholder="100000"
+            placeholder="10"
           />
         </div>
 

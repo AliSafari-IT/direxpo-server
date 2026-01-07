@@ -1,16 +1,17 @@
-* {
+:where(*) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-family-base);
-  background: var(--color-background);
-  color: var(--color-text-primary);
-  line-height: 1.6;
+  font-family: var(--asm-font-family-base);
+  background: var(--asm-color-bg);
+  color: var(--asm-color-text);
+  line-height: var(--asm-line-height-relaxed);
 }
 
 #root {
   min-height: 100vh;
+  background: var(--asm-color-bg);
 }

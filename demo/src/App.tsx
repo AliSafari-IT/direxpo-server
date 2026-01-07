@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Direxpo Server Demo</h1>
+        <h1>Direxpo Server Demo for Developers</h1>
         <p>Explore use cases for the direxpo-server package</p>
       </header>
 

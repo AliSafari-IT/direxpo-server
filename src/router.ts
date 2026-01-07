@@ -14,6 +14,61 @@ type DirexpoRouterResult = {
   outputDir: string;
 };
 
+interface NormalizedOptions {
+  targetPath: string;
+  filter?: "all" | "tsx" | "css" | "md" | "json" | "glob";
+  pattern?: string;
+  exclude?: string[];
+  maxSize?: number;
+}
+
+function normalizeOptions(input: any): NormalizedOptions {
+  const normalized: NormalizedOptions = {
+    targetPath: input.targetPath,
+  };
+
+  if (input.filter) {
+    normalized.filter = input.filter;
+  }
+
+  if (input.pattern && typeof input.pattern === "string" && input.pattern.trim()) {
+    normalized.pattern = input.pattern.trim();
+    if (!input.filter) {
+      normalized.filter = "glob";
+    }
+  }
+
+  if (input.exclude) {
+    let excludeArray: string[] = [];
+    if (typeof input.exclude === "string") {
+      excludeArray = input.exclude
+        .split(/[,\n]+/)
+        .map((s: string) => s.trim())
+        .filter((s: string) => s.length > 0);
+    } else if (Array.isArray(input.exclude)) {
+      excludeArray = input.exclude
+        .map((s: any) => (typeof s === "string" ? s.trim() : ""))
+        .filter((s: string) => s.length > 0);
+    }
+    if (excludeArray.length > 0) {
+      normalized.exclude = excludeArray;
+    }
+  }
+
+  let maxSizeBytes = 0;
+  if (input.maxSizeMb !== undefined && typeof input.maxSizeMb === "number") {
+    maxSizeBytes = input.maxSizeMb;
+  } else if (input.maxSize !== undefined && typeof input.maxSize === "number") {
+    maxSizeBytes = input.maxSize / (1024 * 1024);
+  }
+
+  if (maxSizeBytes > 0 && isFinite(maxSizeBytes)) {
+    normalized.maxSize = maxSizeBytes;
+  }
+
+  return normalized;
+}
+
 export function createDirexpoRouter(
   opts: DirexpoServerOptions = {},
 ): DirexpoRouterResult {
@@ -32,16 +87,11 @@ export function createDirexpoRouter(
 
       // Tree-only: produce markdown that contains only the tree
       if (treeOnly) {
+        const normalizedOpts = normalizeOptions(baseOptions);
         const paths =
           filePaths && filePaths.length
             ? filePaths
-            : await discoverFiles({
-                targetPath: baseOptions.targetPath,
-                filter: baseOptions.filter as any,
-                pattern: (baseOptions as any).pattern,
-                exclude: baseOptions.exclude as any,
-                maxSize: (baseOptions as any).maxSize,
-              });
+            : await discoverFiles(normalizedOpts);
 
         const treeSection = generateTreeSection(paths, baseOptions.targetPath);
 
@@ -67,8 +117,9 @@ export function createDirexpoRouter(
       }
 
       // Normal export
+      const normalizedOpts = normalizeOptions(baseOptions);
       const result = await runExport({
-        ...(baseOptions as any),
+        ...(normalizedOpts as any),
         outDir: OUTPUT_DIR,
       });
 
@@ -77,13 +128,7 @@ export function createDirexpoRouter(
         const paths =
           filePaths && filePaths.length
             ? filePaths
-            : await discoverFiles({
-                targetPath: baseOptions.targetPath,
-                filter: baseOptions.filter as any,
-                pattern: (baseOptions as any).pattern,
-                exclude: baseOptions.exclude as any,
-                maxSize: (baseOptions as any).maxSize,
-              });
+            : await discoverFiles(normalizedOpts);
 
         if (paths.length) {
           try {
@@ -116,13 +161,8 @@ export function createDirexpoRouter(
   router.post("/discover", async (req, res) => {
     try {
       const { options } = req.body as { options: any };
-      const discoverOpts: any = { targetPath: options.targetPath };
-      if (options.pattern) discoverOpts.pattern = options.pattern;
-      if (options.exclude) discoverOpts.exclude = options.exclude;
-      if (options.maxSize) discoverOpts.maxSize = options.maxSize;
-      if (options.filter) discoverOpts.filter = options.filter;
-      
-      const files = await discoverFiles(discoverOpts);
+      const normalizedOpts = normalizeOptions(options);
+      const files = await discoverFiles(normalizedOpts);
       res.json({ files });
     } catch (error) {
       res.status(500).json({

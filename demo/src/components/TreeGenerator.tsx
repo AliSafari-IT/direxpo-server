@@ -3,15 +3,19 @@ import './TreeGenerator.css'
 
 interface TreeOptions {
   targetPath: string
+  filter?: 'all' | 'tsx' | 'css' | 'md' | 'json' | 'glob'
   pattern?: string
   exclude?: string
+  maxSize?: number
 }
 
 function TreeGenerator() {
   const [options, setOptions] = useState<TreeOptions>({
     targetPath: './src',
+    filter: 'all',
     pattern: '',
     exclude: '',
+    maxSize: undefined,
   })
   const [result, setResult] = useState<{ outputPath: string; report: any } | null>(null)
   const [treeContent, setTreeContent] = useState('')
@@ -112,15 +116,33 @@ function TreeGenerator() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="pattern">Pattern (optional)</label>
-          <input
-            id="pattern"
-            type="text"
-            value={options.pattern}
-            onChange={(e) => setOptions({ ...options, pattern: e.target.value })}
-            placeholder="*.ts"
-          />
+          <label htmlFor="filter">Filter</label>
+          <select
+            id="filter"
+            value={options.filter || 'all'}
+            onChange={(e) => setOptions({ ...options, filter: e.target.value as any })}
+          >
+            <option value="all">All Files</option>
+            <option value="tsx">TypeScript/JavaScript</option>
+            <option value="css">CSS</option>
+            <option value="md">Markdown</option>
+            <option value="json">JSON</option>
+            <option value="glob">Glob Pattern</option>
+          </select>
         </div>
+
+        {options.filter === 'glob' && (
+          <div className="form-group">
+            <label htmlFor="pattern">Pattern</label>
+            <input
+              id="pattern"
+              type="text"
+              value={options.pattern || ''}
+              onChange={(e) => setOptions({ ...options, pattern: e.target.value })}
+              placeholder="*.ts"
+            />
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="exclude">Exclude (optional)</label>
@@ -130,6 +152,19 @@ function TreeGenerator() {
             value={options.exclude}
             onChange={(e) => setOptions({ ...options, exclude: e.target.value })}
             placeholder="node_modules,dist"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="maxSize">Max Size (MB, optional)</label>
+          <input
+            id="maxSize"
+            type="number"
+            value={options.maxSize || ''}
+            onChange={(e) =>
+              setOptions({ ...options, maxSize: e.target.value ? Number(e.target.value) : undefined })
+            }
+            placeholder="10"
           />
         </div>
 
