@@ -11,6 +11,111 @@ function GetStarted() {
           Direxpo Server is a powerful tool for discovering, analyzing, and exporting files from your local file system. 
           This guide will help you get started with the package and understand how to use it in your projects.
         </p>
+        <div className="note" style={{ marginTop: '1rem' }}>
+          <strong>⚠️ Important:</strong> This demo app requires a backend server to be running. If you see 404 errors or "Failed to load resource" messages, 
+          it means the backend server is not running. Follow the steps below to set up your local server.
+        </div>
+      </section>
+
+      <section className="section">
+        <h3>Quick Start: Set Up Your Local Server (5 minutes)</h3>
+        <p>Follow these steps to get the backend server running on your machine:</p>
+        
+        <div className="step-guide">
+          <div className="step">
+            <div className="step-number">1</div>
+            <div className="step-content">
+              <h4>Create a new Node.js project</h4>
+              <pre className="code-block">
+{`mkdir my-direxpo-server
+cd my-direxpo-server
+npm init -y`}
+              </pre>
+            </div>
+          </div>
+
+          <div className="step">
+            <div className="step-number">2</div>
+            <div className="step-content">
+              <h4>Install dependencies</h4>
+              <pre className="code-block">
+{`npm install @asafarim/direxpo-server express
+# or if using pnpm:
+pnpm add @asafarim/direxpo-server express`}
+              </pre>
+            </div>
+          </div>
+
+          <div className="step">
+            <div className="step-number">3</div>
+            <div className="step-content">
+              <h4>Create a server file (server.js)</h4>
+              <pre className="code-block">
+{`import express from 'express';
+import { createDirexpoRouter } from '@asafarim/direxpo-server';
+
+const app = express();
+const PORT = 5199;
+
+// Create the direxpo router
+const { router, outputDir } = createDirexpoRouter({
+  outputDir: './exports'
+});
+
+// Mount the router at /api
+app.use('/api', router);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(\`✅ Server running at http://localhost:\${PORT}\`);
+  console.log(\`📁 Exports will be saved to: \${outputDir}\`);
+});`}
+              </pre>
+            </div>
+          </div>
+
+          <div className="step">
+            <div className="step-number">4</div>
+            <div className="step-content">
+              <h4>Update package.json to use ES modules</h4>
+              <p>Add this line to your package.json:</p>
+              <pre className="code-block">
+{`{
+  "type": "module",
+  ...
+}`}
+              </pre>
+            </div>
+          </div>
+
+          <div className="step">
+            <div className="step-number">5</div>
+            <div className="step-content">
+              <h4>Start the server</h4>
+              <pre className="code-block">
+{`node server.js`}
+              </pre>
+              <p>You should see: <code>✅ Server running at http://localhost:5199</code></p>
+            </div>
+          </div>
+
+          <div className="step">
+            <div className="step-number">6</div>
+            <div className="step-content">
+              <h4>Test the server</h4>
+              <p>Open a new terminal and test the API:</p>
+              <pre className="code-block">
+{`curl -X POST http://localhost:5199/api/discover \\
+  -H "Content-Type: application/json" \\
+  -d '{"options":{"targetPath":"./"}}'`}
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div className="info" style={{ marginTop: '1.5rem' }}>
+          <strong>✅ Server is ready!</strong> Now you can use this demo app. The demo will communicate with your local server at <code>http://localhost:5199</code>.
+        </div>
       </section>
 
       <section className="section">
@@ -26,6 +131,18 @@ pnpm add @asafarim/direxpo-server`}
       <section className="section">
         <h3>Basic Usage</h3>
         <p>Import and create a router in your Express server:</p>
+        <p className="note"><strong>Note:</strong> Make sure to install express as well:</p>
+        <pre className="code-block">
+{`npm install express
+# or
+pnpm add express`}
+        </pre>
+        <div className="note">
+          <strong>Note:</strong> The express package is a peer dependency and must be installed separately.
+        </div>
+        <div>
+          Then you can use the package in your Express server like this:
+        </div>
         <pre className="code-block">
 {`import express from 'express';
 import { createDirexpoRouter } from '@asafarim/direxpo-server';
@@ -40,10 +157,21 @@ app.listen(5199, () => {
   console.log('Server running on http://localhost:5199');
 });`}
         </pre>
+
+        <div className="info">
+          After starting the server, you can access the API at <code>http://localhost:5199/api</code>.
+        </div>
+        <div className="heading-point-to-center">
+          OR
+        </div>
+        <div className="tip">
+          Use the provieded demo app to use the package for file discovery, directory tree generation, and export folder contents by 
+          git cloning the repository and running the demo app. Get repo from <a href="https://github.com/AliSafari-IT/direxpo-server" target="_blank" rel="noopener noreferrer">here</a>.
+        </div>
       </section>
 
       <section className="section">
-        <h3>Available Endpoints</h3>
+        <h3 className="section-title">Available Endpoints</h3>
         <div className="endpoints-list">
           <div className="endpoint">
             <h4>POST /api/discover</h4>
