@@ -1,13 +1,14 @@
 import { useState } from 'react'
+import GetStarted from './components/GetStarted'
 import FileDiscovery from './components/FileDiscovery'
 import TreeGenerator from './components/TreeGenerator'
 import MarkdownExporter from './components/MarkdownExporter'
 import './App.css'
 
-type Tab = 'discover' | 'tree' | 'export'
+type Tab = 'start' | 'discover' | 'tree' | 'export'
 
 function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('discover')
+  const [activeTab, setActiveTab] = useState<Tab>('start')
 
   return (
     <div className="app">
@@ -17,6 +18,12 @@ function App() {
       </header>
 
       <nav className="tab-nav">
+        <button
+          className={activeTab === 'start' ? 'active' : ''}
+          onClick={() => setActiveTab('start')}
+        >
+          Get Started
+        </button>
         <button
           className={activeTab === 'discover' ? 'active' : ''}
           onClick={() => setActiveTab('discover')}
@@ -38,6 +45,7 @@ function App() {
       </nav>
 
       <main className="app-main">
+        {activeTab === 'start' && <GetStarted />}
         {activeTab === 'discover' && <FileDiscovery />}
         {activeTab === 'tree' && <TreeGenerator />}
         {activeTab === 'export' && <MarkdownExporter />}

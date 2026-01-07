@@ -1,0 +1,283 @@
+.get-started {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-6);
+}
+
+.get-started h2 {
+  font-size: var(--asm-font-size-xl);
+  font-weight: var(--asm-font-weight-700);
+  color: var(--asm-color-text);
+}
+
+.get-started h3 {
+  font-size: var(--asm-font-size-lg);
+  font-weight: var(--asm-font-weight-600);
+  color: var(--asm-color-text);
+  margin-bottom: var(--asm-space-3);
+}
+
+.get-started h4 {
+  font-size: var(--asm-font-size-md);
+  font-weight: var(--asm-font-weight-600);
+  color: var(--asm-color-text);
+  margin-bottom: var(--asm-space-2);
+}
+
+.get-started p {
+  font-size: var(--asm-font-size-md);
+  color: var(--asm-color-text-muted);
+  line-height: var(--asm-line-height-relaxed);
+  margin-bottom: var(--asm-space-3);
+}
+
+.get-started a {
+  color: var(--asm-color-primary-600);
+  text-decoration: none;
+  transition: color var(--asm-motion-duration-fast) var(--asm-motion-easing-standard);
+}
+
+.get-started a:hover {
+  color: var(--asm-color-primary-700);
+  text-decoration: underline;
+}
+
+.intro-section {
+  padding: var(--asm-space-6);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-lg);
+  box-shadow: var(--asm-effect-shadow-sm);
+}
+
+.intro-section p {
+  font-size: var(--asm-font-size-md);
+  color: var(--asm-color-text);
+  margin-bottom: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-4);
+}
+
+.code-block {
+  padding: var(--asm-space-4);
+  background: var(--asm-color-bg);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  font-family: var(--asm-font-family-mono);
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: var(--asm-line-height-relaxed);
+}
+
+.endpoints-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-4);
+}
+
+.endpoint {
+  padding: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  box-shadow: var(--asm-effect-shadow-sm);
+}
+
+.endpoint h4 {
+  color: var(--asm-color-primary-600);
+  font-family: var(--asm-font-family-mono);
+  margin-bottom: var(--asm-space-2);
+}
+
+.endpoint p {
+  margin-bottom: var(--asm-space-2);
+}
+
+.endpoint p:last-child {
+  margin-bottom: 0;
+}
+
+.endpoint-example {
+  padding: var(--asm-space-3);
+  background: var(--asm-color-bg);
+  border-radius: var(--asm-radius-sm);
+  font-size: var(--asm-font-size-xs);
+  color: var(--asm-color-text-muted);
+  margin-bottom: 0;
+}
+
+.endpoint-example code {
+  font-family: var(--asm-font-family-mono);
+  color: var(--asm-color-text);
+  word-break: break-all;
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-2);
+}
+
+.filter-list li {
+  padding: var(--asm-space-2) var(--asm-space-3);
+  background: var(--asm-color-surface);
+  border-left: 3px solid var(--asm-color-primary-500);
+  border-radius: var(--asm-radius-sm);
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text);
+}
+
+.filter-list strong {
+  color: var(--asm-color-primary-600);
+  font-weight: var(--asm-font-weight-600);
+}
+
+.options-table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-3);
+}
+
+.option-row {
+  padding: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: var(--asm-space-4);
+  align-items: center;
+}
+
+.option-name {
+  font-family: var(--asm-font-family-mono);
+  font-weight: var(--asm-font-weight-600);
+  color: var(--asm-color-primary-600);
+  font-size: var(--asm-font-size-sm);
+}
+
+.option-desc {
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text);
+}
+
+.option-example {
+  font-family: var(--asm-font-family-mono);
+  font-size: var(--asm-font-size-xs);
+  color: var(--asm-color-text-muted);
+  background: var(--asm-color-bg);
+  padding: var(--asm-space-2);
+  border-radius: var(--asm-radius-sm);
+}
+
+.use-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--asm-space-4);
+}
+
+.use-case {
+  padding: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  box-shadow: var(--asm-effect-shadow-sm);
+  transition: transform var(--asm-motion-duration-fast) var(--asm-motion-easing-standard),
+    box-shadow var(--asm-motion-duration-fast) var(--asm-motion-easing-standard);
+}
+
+.use-case:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--asm-effect-shadow-md);
+}
+
+.use-case h4 {
+  margin-bottom: var(--asm-space-2);
+  color: var(--asm-color-primary-600);
+}
+
+.use-case p {
+  font-size: var(--asm-font-size-sm);
+  margin-bottom: 0;
+}
+
+.workflow-steps {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-4);
+  counter-reset: step-counter;
+}
+
+.workflow-steps li {
+  counter-increment: step-counter;
+  padding: var(--asm-space-4);
+  background: var(--asm-color-surface);
+  border: var(--asm-border-hairline) solid var(--asm-color-border);
+  border-radius: var(--asm-radius-md);
+  position: relative;
+  padding-left: var(--asm-space-12);
+}
+
+.workflow-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: var(--asm-space-4);
+  top: var(--asm-space-4);
+  width: 28px;
+  height: 28px;
+  background: var(--asm-color-primary-600);
+  color: var(--asm-color-button-primary-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--asm-font-weight-600);
+  font-size: var(--asm-font-size-sm);
+}
+
+.workflow-steps li strong {
+  color: var(--asm-color-text);
+  font-weight: var(--asm-font-weight-600);
+}
+
+.workflow-steps li p {
+  font-size: var(--asm-font-size-sm);
+  margin-bottom: 0;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--asm-space-2);
+}
+
+.tips-list li {
+  padding: var(--asm-space-2) var(--asm-space-3);
+  background: var(--asm-color-surface);
+  border-left: 3px solid var(--asm-color-success-500);
+  border-radius: var(--asm-radius-sm);
+  font-size: var(--asm-font-size-sm);
+  color: var(--asm-color-text);
+}
+
+.tips-list code {
+  font-family: var(--asm-font-family-mono);
+  background: var(--asm-color-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--asm-color-primary-600);
+  font-size: var(--asm-font-size-xs);
+}
