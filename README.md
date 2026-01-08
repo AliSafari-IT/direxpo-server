@@ -1,6 +1,8 @@
 # @asafarim/direxpo-server
 
-Express API wrapper for MD Exporter with tree generation capabilities.
+@asafarim/direxpo-server is a lightweight Node.js + TypeScript server that exposes directory discovery with directory tree generation capabilities and export to md file capabilities over HTTP.
+
+It acts as a backend layer on top of @asafarim/direxpo-core and @asafarim/md-exporter, providing APIs to scan folders, generate structured file trees, and export selected files or directories to Markdown. The package includes a built-in Express dev server for local use, as well as a React-based demo application (Vite) that showcases file discovery, tree generation, and Markdown export in a visual UI. It is designed to be used both as a standalone development tool and as an embeddable service in larger workflows or documentation pipelines.
 
 ## Features
 
